@@ -3,7 +3,7 @@ Github Android客户端
 [apk链接](https://github.com/CandyShoes/GithubClient/blob/main/app/release/app-release.apk)
 
 ## 框架设计
-## 1、网络：
+1、网络：
 OKHTTP+Retrofit
 原因：OkHttp 是一个非常优秀的网络请求框架
 •  易使用、易扩展。
@@ -17,7 +17,7 @@ OKHTTP+Retrofit
 使用kotlin的协成来简化网络请求调度时的线程切换
 
 
-## Retrofit中的设计模式
+Retrofit中的设计模式
 Builder（建造者）模式
 将复杂对象的构建和表示相分离，使复杂对象的构建简单化
 防止构造方法参数过多，造成使用者使用不便，通过链式调用不同方法设置不同参数
@@ -34,25 +34,25 @@ Glide
 原因：Glide 是在Picasso 基础之上进行的二次开发做了不少改进
 对比Fresco，使用较Fresco简单，加载速度和缓存虽比不上Fresco，但对于github客户端这种不是特别注重速度和缓存的应用来说，选择glide更好
 
-## 3、本地缓存：(后期优化，还使用原生的SharedPreferences来进行本地数据存储)
+3、本地缓存：(后期优化，还使用原生的SharedPreferences来进行本地数据存储)
 MMKV
 登录信息、用户设置等持久化的本地数据相比于SharedPreferences选择腾讯的开源框架-MMKV
 原因：MMKV 是基于 mmap 内存映射的 key-value 组件，底层序列化/反序列化使用 protobuf 实现，性能高，稳定性强。
 
 
-## 4、日志记录：（后期优化）
+4、日志记录：（后期优化）
 XLog
 原因：
 日志支持加密，提高日志信息的安全性
 底层使用c++实现，支持Android和iOS平台
 支持设置单个日志文件的保存天数和大小，基本满足日常的开发需求
 
-## 5、Toast吐司
+5、Toast吐司
 Toasty
 原因：第三方开源的小型提示语框，提供多种风格的主题，作为工具类十分好用
 
 
-页面设计
+## 页面设计
 主页
 用户冷启进入主页时对未授权用户弹出授权弹窗，同意或拒绝都可继续使用。
 后续可以优化为查看你所有的版本库，包括公开、私有、fork的，以及星标的
@@ -75,35 +75,33 @@ Toasty
 
 个人资料页
 4.1、支持查看查看用户头像、名字、邮箱地址、关注数、粉丝
-查看用户的跟随者、跟随的人和属于的组织
-查看用户公共的、星标的项目和活动
-查看你的私有项目
-跟随和取消跟随用户
-支持退登，使用Builer设计模式链式调用构建退登询问弹窗
+4.2、查看用户的跟随者、跟随的人和属于的组织
+4.3、支持退登，使用Builer设计模式链式调用构建退登询问弹窗
 退出弹窗用户点击确认后成功后清除本地用户信息和记录
-单例
 
+单例
 5.1、application、appData（维护登录数据）使用了单例模式减少内存开销
 
 BaseActivity
 6.1、包含默认样式（即网络异常等原因）展现给用户
 
-7、BasePresenter
+BasePresenter
 7.1、对于使用MVP模式的presenter提供上下文Context，View的绑定和取消绑定方法
 7.2、项目里login和search的presenter都继承BasePresenter
 
-8、详情页
+详情页
 8.1、页面复用个人资料页，支持对搜索到的用户内容做详细展示
 8.2、包含搜索到的用户头像、名字、location、email、关注数等信息
 8.3、后续搜索支持项目搜索后可展示项目内容信息
 
 
-##测试用例
+## 测试用例
 3.1登录页
 唤起浏览器，正常登录会返回应用并更新资料页和用户信息
 登录失败或网络异常有对应提示告知用户
 杀掉app重新冷启会维持已登录状态
 清楚数据，重新展示登录页
+
 3.2、主页&搜索页
 页面正常展示，滑动无异常
 点击搜索栏能弹起键盘并不压缩页面
@@ -113,12 +111,13 @@ BaseActivity
 数据准确性比较
 边界case测试，如用户名为null或者特别长时展示情况
 输入异常有提示
+
 3.3、详情页
 页面正常展示，点击无反应
 数据准确性
 边界长度case测试，如数据为null或者特别长时展示情况
 
-##app使用截图
+## app使用截图
 ![3F1F3B296C869C0CDC8E8159A39163B4](https://user-images.githubusercontent.com/22748106/182506916-e31d2f19-6b79-4662-928f-74fc06de60c7.jpg)
 ![83D5992C12DCEF38DC1689E6306EF339](https://user-images.githubusercontent.com/22748106/182506939-c735594a-ad3c-4281-8bc0-01a8fc641bdc.jpg)
 ![AF08C3C4E413867E925C3AEA32F08F6C](https://user-images.githubusercontent.com/22748106/182506955-72de73a6-4cbc-4f77-9dea-e6eb11c0f2fb.jpg)
