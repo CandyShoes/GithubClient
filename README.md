@@ -3,7 +3,7 @@ Github Android客户端
 [apk链接](https://github.com/CandyShoes/GithubClient/blob/main/app/release/app-release.apk)
 
 ## 框架设计
-1、网络：
+1、网络：       
 OKHTTP+Retrofit
 原因：OkHttp 是一个非常优秀的网络请求框架
 •  易使用、易扩展。
@@ -29,7 +29,7 @@ Builder（建造者）模式
 观察者模式
 定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新
 
-图片库：
+2、图片库：       
 Glide
 原因：Glide 是在Picasso 基础之上进行的二次开发做了不少改进
 对比Fresco，使用较Fresco简单，加载速度和缓存虽比不上Fresco，但对于github客户端这种不是特别注重速度和缓存的应用来说，选择glide更好
